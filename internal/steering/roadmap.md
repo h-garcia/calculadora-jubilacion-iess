@@ -12,6 +12,6 @@ When a month wraps, run the archive command (e.g., "archive 2026-11") to move ev
 - [x] Landing page (ES/EN with top-right language selector) that embeds the existing IESS calculator, deployed to GitHub Pages. Spec: `internal/specs/2026-11-24-landing-page.md`; PR #1; review: `internal/ai-reviews/2026-11-24-feat-landing-page.md`.
 - [ ] Contributor guide so non-technical team members can open PRs from the GitHub web editor. Spec: TBD.
 - [ ] Yearly SBU / coefficient data updates as editable data files. Spec: TBD.
-- [WIP] Short `docs/` files explaining how this project was built and the two local skills used. Spec: `internal/specs/2026-11-24-how-it-was-built.md`.
+- [x] Short `docs/` files explaining how this project was built and the two local skills used. Spec: `internal/specs/2026-11-24-how-it-was-built.md`; PR #2; review: skipped by user decision.
 
 ## Backlog
