@@ -20,7 +20,7 @@ The design system is organized into five areas, shown as five tabs (in this orde
 
 ## Aesthetic
 
-Fresh look, to be chosen by the user from the 5 directions on the Exploration tab (spec `2026-11-24-landing-page.md`). Until then production uses neutral placeholder tokens.
+**Claro** (exploration option 5): minimal black and white with an emerald accent (`#0b7a55`), Space Grotesk headings + Inter body, small radii (2–6px), no shadows, lots of whitespace. Words: modern, direct, clear.
 
 ## Principles
 
@@ -31,4 +31,4 @@ Fresh look, to be chosen by the user from the 5 directions on the Exploration ta
 ## Decisions and open questions
 
 - 2026-11-24: Exploration directions are never deleted, even after one is chosen (user decision).
-- Open: which of the 5 directions becomes production.
+- 2026-11-24: User chose direction 5, "Claro", for production; its tokens live in `design-system/brand/tokens.css`. The other four stay on the Exploration tab.

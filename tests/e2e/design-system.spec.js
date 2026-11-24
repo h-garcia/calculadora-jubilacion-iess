@@ -64,28 +64,33 @@ test('sections tab renders every section partial with prefixed ids', async ({ pa
   await expect(page.locator('#ds-tabpanel-sections #ds-landing-faq details')).toHaveCount(6);
 });
 
-test('exploration tab shows 5 named directions and loads fonts only on this page', async ({ page }) => {
+test('exploration tab shows 5 named directions; production pages do not depend on explorations', async ({ page }) => {
   await open(page, 'design-system/');
   await page.click('#ds-tab-exploration');
   await expect(page.locator('#ds-tabpanel-exploration article.direction')).toHaveCount(5);
   for (const d of ['andes', 'pacifico', 'civico', 'cacao', 'claro']) {
     await expect(page.locator(`#exploration-${d}-name`)).toContainText(messages.es.designSystem.exploration.directions[d].name);
   }
-  await expect(page.locator('link[href*="fonts.googleapis.com"]')).toHaveCount(1);
   await expect(page.locator('link[href*="2026-11-24-directions.css"]')).toHaveCount(1);
   for (const path of ['', 'calculadora/']) {
     await open(page, path);
-    await expect(page.locator('link[href*="fonts.googleapis.com"]')).toHaveCount(0);
     await expect(page.locator('link[href*="exploration"]')).toHaveCount(0);
   }
 });
 
-test('only the four design-system CSS files are linked on production pages', async ({ page }) => {
+// Production uses the chosen direction "Claro": its fonts (Inter + Space Grotesk) and the four design-system CSS files only.
+test('production pages link only the chosen fonts and the four design-system CSS files', async ({ page }) => {
   for (const path of ['', 'calculadora/']) {
     await open(page, path);
     const hrefs = await page.locator('link[rel="stylesheet"]').evaluateAll((els) => els.map((e) => e.getAttribute('href')));
-    expect(hrefs.map((h) => h.replace(/^(\.\.\/)?/, ''))).toEqual([
+    const fonts = hrefs.filter((h) => h.includes('fonts.googleapis.com'));
+    expect(fonts).toHaveLength(1);
+    const families = [...fonts[0].matchAll(/family=([^:&]+)/g)].map((m) => m[1]).sort();
+    expect(families).toEqual(['Inter', 'Space+Grotesk']);
+    expect(hrefs.filter((h) => !h.includes('fonts.googleapis.com')).map((h) => h.replace(/^(\.\.\/)?/, ''))).toEqual([
       'design-system/brand/tokens.css', 'design-system/elements/elements.css',
       'design-system/components/components.css', 'design-system/sections/sections.css']);
+    const headingFont = await page.locator('h1').first().evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(headingFont).toContain('Space Grotesk');
   }
 });

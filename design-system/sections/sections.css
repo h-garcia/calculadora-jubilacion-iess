@@ -14,7 +14,7 @@
 
 /* Rules */
 .rules__formula { font-weight: 700; }
-.rules__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); align-items: start; }
+.rules__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: var(--space-4); align-items: start; }
 .rules__grid .card { margin-bottom: 0; }
 
 /* FAQ */
