@@ -1,0 +1,279 @@
+{
+  "common": {
+    "siteName": "IESS Retirement Calculator",
+    "skipToContent": "Skip to content",
+    "nav": {
+      "label": "Main navigation",
+      "home": "Home",
+      "calculator": "Calculator",
+      "designSystem": "Design system"
+    },
+    "lang": {
+      "toggleLabel": "Site language",
+      "es": "ES",
+      "esName": "Spanish",
+      "en": "EN",
+      "enName": "English"
+    }
+  },
+  "disclaimer": {
+    "title": "Important notice",
+    "body": "This calculator gives an estimate for informational purposes only. It is not official IESS advice and does not replace your contribution history. Values (SBU, coefficients and caps) may change every year.",
+    "short": "Estimated result, not official. Confirm your pension with the IESS.",
+    "link": "Go to the official IESS website"
+  },
+  "footer": {
+    "tagline": "Built to help Ecuadorian workers plan their retirement.",
+    "source": "Reference data: SBU {year} = {sbu}.",
+    "repo": "Open source on GitHub"
+  },
+  "landing": {
+    "meta": {
+      "title": "IESS Retirement Calculator — Estimate your pension",
+      "description": "Understand the IESS retirement rules and estimate your pension in minutes."
+    },
+    "hero": {
+      "eyebrow": "IESS retirement · Ecuador",
+      "title": "Find out how much you'll get when you retire",
+      "subtitle": "Estimate your IESS pension in minutes and see how many more contributions, and what salary, you need to reach the pension you want.",
+      "cta": "Calculate my pension",
+      "secondary": "See the rules"
+    },
+    "how": {
+      "title": "How it works",
+      "step1": {
+        "title": "Enter your details",
+        "body": "Your number of monthly contributions, the average of your 5 best salary years, and your age."
+      },
+      "step2": {
+        "title": "See your pension",
+        "body": "We show your estimated monthly pension, the extra yearly payments, and whether you already qualify."
+      },
+      "step3": {
+        "title": "Set your goal",
+        "body": "Type the pension you want and we tell you how many more contributions, and what salary, you need to reach it."
+      }
+    },
+    "rules": {
+      "title": "The rules, explained",
+      "intro": "The IESS calculates your pension from three things: how many years you contributed, the average of your 5 best salary years, and a coefficient. The pension also never goes below a minimum or above a maximum, both tied to the Unified Basic Salary (SBU).",
+      "formula": "Monthly pension = average of the 5 best years × coefficient (within the minimum and maximum caps).",
+      "sbuNote": "SBU {year} = {sbu}. The option that matches your current age applies."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": {
+        "question": "What is the SBU and why does it matter?",
+        "answer": "The Unified Basic Salary (SBU) is the minimum wage the Government sets every year. The IESS uses it to set the minimum and maximum pension, and for the fourteenth payment you receive as a retiree."
+      },
+      "q2": {
+        "question": "How is my pension calculated?",
+        "answer": "The average of your 5 best salary years is multiplied by a coefficient that depends on your years of contributions. If the result is below the minimum or above the maximum for your range, it is adjusted to that cap."
+      },
+      "q3": {
+        "question": "What is the average of the 5 best years?",
+        "answer": "It is the monthly average of the 60 months in which you earned the most. You can check it in your contribution history on the IESS website. If you don't know it, use an estimate."
+      },
+      "q4": {
+        "question": "How many contributions do I need to retire?",
+        "answer": "It depends on your age: 480 contributions at any age, 360 if you are 60 or older, 180 if you are 65 or older, and 120 if you are 70 or older."
+      },
+      "q5": {
+        "question": "Do I get extra payments each year?",
+        "answer": "Yes. You receive the thirteenth payment (one extra monthly pension) and the fourteenth payment (one extra SBU). That is why the yearly total is more than 12 pensions."
+      },
+      "q6": {
+        "question": "Is this calculation official?",
+        "answer": "No. It is an informational estimate based on the published tables. To know your exact pension, check directly with the IESS."
+      }
+    }
+  },
+  "tables": {
+    "eligibility": {
+      "title": "Retirement age and required contributions",
+      "colAge": "Age",
+      "colContributions": "Contributions",
+      "contributionsValue": "{n} or more",
+      "noAgeLimit": "Any age",
+      "age60": "60 or older",
+      "age65": "65 or older",
+      "age70": "70 or older"
+    },
+    "minPension": {
+      "title": "Minimum pension by years of contributions",
+      "colYears": "Years of contributions",
+      "colPct": "Percentage of SBU",
+      "colAmount": "Monthly amount",
+      "upTo10": "Up to 10",
+      "y11to20": "11 to 20",
+      "y21to30": "21 to 30",
+      "y31to35": "31 to 35",
+      "y36to39": "36 to 39",
+      "y40plus": "40 or more"
+    },
+    "maxPension": {
+      "title": "Maximum pension by years of contributions",
+      "colYears": "Years contributed",
+      "colPct": "Percentage of SBU",
+      "colAmount": "Monthly amount",
+      "y10to14": "10 to 14",
+      "y15to19": "15 to 19",
+      "y20to24": "20 to 24",
+      "y25to29": "25 to 29",
+      "y30to34": "30 to 34",
+      "y35to39": "35 to 39",
+      "y40plus": "40 or more"
+    },
+    "coefficient": {
+      "title": "Retirement coefficient",
+      "colYears": "Years of contributions",
+      "colCoef": "Coefficient",
+      "note": "The coefficient changes per full year of contributions. Beyond 50 years it stays at 1.125."
+    }
+  },
+  "calc": {
+    "meta": {
+      "title": "Calculator — IESS Retirement Calculator",
+      "description": "Estimate your IESS pension, check whether you qualify, and see what you need to contribute to reach your goal."
+    },
+    "title": "Calculate your pension",
+    "subtitle": "Estimate your current pension, how much longer you need to contribute, and how much to raise your salary to reach the pension you want.",
+    "tabs": {
+      "label": "Calculator sections",
+      "calc": "Calculator",
+      "tables": "Reference tables"
+    },
+    "inputs": {
+      "title": "Your details",
+      "aportes": "Number of contributions",
+      "aportesUnit": "(months)",
+      "aportesPlaceholder": "e.g. 300",
+      "promedio": "Average of 5 best years",
+      "promedioUnit": "($)",
+      "promedioPlaceholder": "e.g. 1200",
+      "edad": "Current age",
+      "edadUnit": "(years)",
+      "edadPlaceholder": "e.g. 55",
+      "deseada": "Desired monthly pension",
+      "deseadaUnit": "($, optional)",
+      "deseadaPlaceholder": "e.g. 900"
+    },
+    "results": {
+      "title": "Results",
+      "pension": "Monthly pension",
+      "pensionSub": "Average × coefficient, within caps",
+      "decimoCuarto": "Fourteenth payment (yearly)",
+      "decimoCuartoSub": "One extra Unified Basic Salary",
+      "decimoTercero": "Thirteenth payment",
+      "decimoTerceroSub": "One extra month of pension per year",
+      "totalAnual": "Yearly total",
+      "totalAnualSub": "12 months + thirteenth + fourteenth",
+      "coef": "Applied coefficient",
+      "coefSub": "{years} years and {months} months of contributions",
+      "min": "Minimum cap",
+      "max": "Maximum cap",
+      "pctOfSbu": "{pct}% of SBU"
+    },
+    "elig": {
+      "ok480": "You qualify: you have 480 or more contributions (any age).",
+      "ok70": "You qualify to retire at 70 (120 or more contributions).",
+      "ok65": "You qualify to retire at 65 (180 or more contributions).",
+      "ok60": "You qualify to retire at 60 (360 or more contributions).",
+      "missing480": "You don't qualify yet: you need {missing} more contributions to reach 480 (any age).",
+      "missing70": "You don't qualify yet: you need {missing} more contributions for the age-70 requirement (120).",
+      "missing65": "You don't qualify yet: you need {missing} more contributions for the age-65 requirement (180).",
+      "missing60": "You don't qualify yet: you need {missing} more contributions for the age-60 requirement (360).",
+      "under60": "You don't qualify yet: under 60 you need 480 contributions."
+    },
+    "desired": {
+      "title": "Desired pension",
+      "salary": "Adjusted contribution salary",
+      "salaryUnit": "($)",
+      "iessNote": "IESS contribution (20.6%): {amount}",
+      "needData": "Enter an average of the 5 best years greater than 0 to run the simulation.",
+      "reached": "With monthly contributions on <b>{salary}</b> (IESS contribution: <b>{iess}</b>), you will reach your desired pension of <b>{desired}</b> in <b>{months}</b> more months, for a total of <b>{total}</b> contributions (<b>{years}</b> years).",
+      "notReached": "You don't reach the desired pension within 50 years of contributions with an adjusted salary of <b>{salary}</b>. Increase the adjusted salary.",
+      "recommendation": "<b>Recommendation:</b> the goal is to get the best value as soon as possible. It's better to contribute only up to <b>{total}</b> contributions (<b>{years}</b> years, or <b>{extra}</b> more contributions). At that point your pension hits the maximum cap of <b>{cap}</b>, and further contributions won't raise it until the next range. The maximum cap rises by range: {ranges}",
+      "rangeBounded": "{from}-{to} years: {amount}",
+      "rangeOpen": "{from} years or more: {amount}",
+      "seeMaxTable": "See the maximum pension table",
+      "colNum": "Contribution #",
+      "colYears": "Equiv. years",
+      "colSalary": "Adjusted salary",
+      "colAverage": "Avg. 5 best years",
+      "colCoef": "Coefficient",
+      "colPension": "Pension to receive",
+      "capped": "cap: {amount}",
+      "note": "Adjusted monthly average: (average × 59 + salary) ÷ 60. Coefficient by full year of contributions (reference table). Pension to receive = adjusted average × coefficient (with SBU min/max caps when they apply).",
+      "belowMin": "The desired pension is below the minimum ({min}). You would receive at least {min}."
+    }
+  },
+  "designSystem": {
+    "meta": {
+      "title": "Design system — IESS Retirement Calculator",
+      "description": "Living design-system reference: brand, elements, components, sections and explorations."
+    },
+    "title": "Design system",
+    "intro": "Living reference for everything the site's pages use. Every example is rendered by the same code as the real pages.",
+    "tabs": {
+      "label": "Design system areas",
+      "brand": "Brand",
+      "elements": "Elements",
+      "components": "Components",
+      "sections": "Sections",
+      "exploration": "Exploration"
+    },
+    "brand": {
+      "title": "Brand",
+      "intro": "Color, type, spacing and shape tokens, plus the text wordmark.",
+      "colors": "Color",
+      "typography": "Typography",
+      "spacing": "Spacing",
+      "radius": "Radii",
+      "wordmark": "Wordmark"
+    },
+    "elements": {
+      "title": "Elements",
+      "intro": "Basic pieces: buttons, fields, badges, alerts, text styles and tables."
+    },
+    "components": {
+      "title": "Components",
+      "intro": "Reusable composites built from the elements."
+    },
+    "sections": {
+      "title": "Sections",
+      "intro": "Full page blocks, exactly as the site's pages use them."
+    },
+    "sample": {
+      "badge": "New",
+      "sampleText": "Sample text"
+    },
+    "exploration": {
+      "title": "Exploration",
+      "intro": "Five visual directions for the fresh look. Each uses the same real components; only the brand tokens change. Pick one for production. These explorations are kept permanently.",
+      "option": "Option",
+      "directions": {
+        "andes": {
+          "name": "Andes",
+          "description": "Calm teal and warm sand with editorial serif headings. Feels calm and trustworthy."
+        },
+        "pacifico": {
+          "name": "Pacific",
+          "description": "Deep ocean blue with coral and soft rounded shapes. Friendly and optimistic."
+        },
+        "civico": {
+          "name": "Civic",
+          "description": "Institutional navy with Ecuador-flag yellow. Crisp, official and trustworthy."
+        },
+        "cacao": {
+          "name": "Cacao",
+          "description": "Cream, forest green and cacao gold. Warm, editorial and distinctly Ecuadorian."
+        },
+        "claro": {
+          "name": "Clear",
+          "description": "Minimal black and white with an emerald accent and plenty of space. Modern and direct."
+        }
+      }
+    }
+  }
+}

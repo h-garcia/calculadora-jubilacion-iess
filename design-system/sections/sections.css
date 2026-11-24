@@ -1,0 +1,42 @@
+/* Sections — page-level blocks. Markup lives in the *.html partials next to this file. */
+
+.section { padding: var(--space-7) 0; }
+.section--alt { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.section__title { margin-bottom: var(--space-5); }
+
+/* Hero */
+.hero { padding: var(--space-8) 0 var(--space-7); background: linear-gradient(180deg, var(--color-highlight-bg), var(--color-bg)); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+
+/* How it works */
+.how__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+.how__grid .card { margin-bottom: 0; }
+
+/* Rules */
+.rules__formula { font-weight: 700; }
+.rules__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); align-items: start; }
+.rules__grid .card { margin-bottom: 0; }
+
+/* FAQ */
+.faq__list { max-width: 760px; }
+
+/* Calculator */
+.calculator__form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+.calculator__recommendation { margin-top: var(--space-4); }
+.calculator__recommendation + .table-wrap, .alert + .table-wrap { margin-top: var(--space-4); }
+.calculator__page-header { padding: var(--space-6) 0 var(--space-4); }
+
+/* Footer */
+.site-footer { margin-top: var(--space-7); padding: var(--space-6) 0; background: var(--color-primary-strong); color: var(--color-on-primary); font-size: var(--text-sm); }
+.site-footer a { color: var(--color-on-primary); }
+.site-footer__meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); opacity: 0.9; }
+
+/* Design-system reference page helpers */
+.ds-swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-3); }
+.ds-swatch { border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface); font-size: var(--text-xs); }
+.ds-swatch__chip { height: 56px; }
+.ds-swatch__meta { padding: var(--space-2); font-family: ui-monospace, monospace; }
+.ds-specimen { border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); margin-bottom: var(--space-5); background: var(--color-bg); }
+.ds-specimen__label { font-family: ui-monospace, monospace; font-size: var(--text-xs); color: var(--color-muted); margin-bottom: var(--space-3); }
+.ds-specimen .site-nav { position: static; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }

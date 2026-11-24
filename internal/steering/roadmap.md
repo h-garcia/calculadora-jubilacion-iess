@@ -12,5 +12,6 @@ When a month wraps, run the archive command (e.g., "archive 2026-11") to move ev
 - [WIP] Landing page (ES/EN with top-right language selector) that embeds the existing IESS calculator, deployed to GitHub Pages. Branch `feat/landing-page`; spec: `internal/specs/2026-11-24-landing-page.md`.
 - [ ] Contributor guide so non-technical team members can open PRs from the GitHub web editor. Spec: TBD.
 - [ ] Yearly SBU / coefficient data updates as editable data files. Spec: TBD.
+- [ ] small md files explaining how this project got built and the 2 local skills used
 
 ## Backlog

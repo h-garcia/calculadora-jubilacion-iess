@@ -1,0 +1,58 @@
+/*
+  Brand tokens — the single source of color, type, spacing and radii.
+  PLACEHOLDER (neutral) values until a direction is chosen from the
+  Exploration tab (design-system/exploration/). To adopt a direction,
+  copy its token block here.
+*/
+:root {
+  /* Color */
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef0f3;
+  --color-text: #1d2330;
+  --color-muted: #5d6676;
+  --color-border: #dde1e7;
+  --color-primary: #3b4a63;
+  --color-primary-strong: #26324a;
+  --color-on-primary: #ffffff;
+  --color-accent: #7a8aa6;
+  --color-highlight-bg: #e8ecf3;
+  --color-ok: #1f6f43;
+  --color-ok-bg: #eaf6ef;
+  --color-warn: #8a2a1f;
+  --color-warn-bg: #fbecea;
+  --color-missing: #d10000;
+
+  /* Typography */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-body);
+  --font-weight-heading: 700;
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: clamp(2rem, 5vw, 3rem);
+  --line-height: 1.55;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.08);
+
+  /* Layout */
+  --container: 1040px;
+  --gutter: 16px;
+}

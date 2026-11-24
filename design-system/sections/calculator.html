@@ -1,0 +1,134 @@
+<div id="calc-root" class="container" x-data="calculator()">
+  <div id="calc-tabs" class="tabs" role="tablist" :aria-label="$t('calc.tabs.label')">
+    <button id="calc-tab-calc" type="button" role="tab" class="tabs__tab" data-tab="calc" aria-controls="calc-tabpanel-calc" :aria-selected="active === 'calc'" :tabindex="active === 'calc' ? 0 : -1" @click="select('calc')" @keydown="onKey($event)" x-t="'calc.tabs.calc'"></button>
+    <button id="calc-tab-tables" type="button" role="tab" class="tabs__tab" data-tab="tables" aria-controls="calc-tabpanel-tables" :aria-selected="active === 'tables'" :tabindex="active === 'tables' ? 0 : -1" @click="select('tables')" @keydown="onKey($event)" x-t="'calc.tabs.tables'"></button>
+  </div>
+
+  <div id="calc-tabpanel-calc" role="tabpanel" aria-labelledby="calc-tab-calc" x-show="active === 'calc'">
+    <section id="calc-inputs" class="card" aria-labelledby="calc-inputs-title">
+      <h2 id="calc-inputs-title" x-t="'calc.inputs.title'"></h2>
+      <div id="calc-inputs-form" class="calculator__form">
+        <div id="calc-field-aportes" class="field">
+          <label id="calc-label-aportes" for="calc-input-aportes"><span x-t="'calc.inputs.aportes'"></span> <small class="field__unit" x-t="'calc.inputs.aportesUnit'"></small></label>
+          <input id="calc-input-aportes" type="number" x-model.number="aportes" min="0" step="1" :placeholder="$t('calc.inputs.aportesPlaceholder')">
+        </div>
+        <div id="calc-field-promedio" class="field">
+          <label id="calc-label-promedio" for="calc-input-promedio"><span x-t="'calc.inputs.promedio'"></span> <small class="field__unit" x-t="'calc.inputs.promedioUnit'"></small></label>
+          <input id="calc-input-promedio" type="number" x-model.number="promedio" min="0" step="0.01" :placeholder="$t('calc.inputs.promedioPlaceholder')">
+        </div>
+        <div id="calc-field-edad" class="field">
+          <label id="calc-label-edad" for="calc-input-edad"><span x-t="'calc.inputs.edad'"></span> <small class="field__unit" x-t="'calc.inputs.edadUnit'"></small></label>
+          <input id="calc-input-edad" type="number" x-model.number="edad" min="0" step="1" :placeholder="$t('calc.inputs.edadPlaceholder')">
+        </div>
+        <div id="calc-field-deseada" class="field">
+          <label id="calc-label-deseada" for="calc-input-deseada"><span x-t="'calc.inputs.deseada'"></span> <small class="field__unit" x-t="'calc.inputs.deseadaUnit'"></small></label>
+          <input id="calc-input-deseada" type="number" x-model.number="deseada" min="0" step="0.01" :placeholder="$t('calc.inputs.deseadaPlaceholder')">
+        </div>
+      </div>
+    </section>
+
+    <section id="calc-results" class="card" aria-labelledby="calc-results-title">
+      <h2 id="calc-results-title" x-t="'calc.results.title'"></h2>
+      <div id="calc-results-grid" class="stat-grid">
+        <div id="calc-result-pension" class="stat stat--highlight">
+          <div class="stat__label" x-t="'calc.results.pension'"></div>
+          <div id="calc-result-pension-value" class="stat__value" x-text="fmt(summary.pension)"></div>
+          <div class="stat__sub" x-t="'calc.results.pensionSub'"></div>
+        </div>
+        <div id="calc-result-decimo-cuarto" class="stat">
+          <div class="stat__label" x-t="'calc.results.decimoCuarto'"></div>
+          <div id="calc-result-decimo-cuarto-value" class="stat__value" x-text="fmt(summary.decimoCuarto)"></div>
+          <div class="stat__sub" x-t="'calc.results.decimoCuartoSub'"></div>
+        </div>
+        <div id="calc-result-decimo-tercero" class="stat">
+          <div class="stat__label" x-t="'calc.results.decimoTercero'"></div>
+          <div id="calc-result-decimo-tercero-value" class="stat__value" x-text="fmt(summary.decimoTercero)"></div>
+          <div class="stat__sub" x-t="'calc.results.decimoTerceroSub'"></div>
+        </div>
+        <div id="calc-result-total-anual" class="stat">
+          <div class="stat__label" x-t="'calc.results.totalAnual'"></div>
+          <div id="calc-result-total-anual-value" class="stat__value" x-text="fmt(summary.totalAnual)"></div>
+          <div class="stat__sub" x-t="'calc.results.totalAnualSub'"></div>
+        </div>
+        <div id="calc-result-coef" class="stat">
+          <div class="stat__label" x-t="'calc.results.coef'"></div>
+          <div id="calc-result-coef-value" class="stat__value" x-text="summary.coef.toFixed(3)"></div>
+          <div id="calc-result-coef-sub" class="stat__sub" x-t="['calc.results.coefSub', coefSubParams]"></div>
+        </div>
+        <div id="calc-result-min" class="stat">
+          <div class="stat__label" x-t="'calc.results.min'"></div>
+          <div id="calc-result-min-value" class="stat__value" x-text="fmt(summary.pensMin)"></div>
+          <div id="calc-result-min-sub" class="stat__sub" x-t="['calc.results.pctOfSbu', { pct: minPct }]"></div>
+        </div>
+        <div id="calc-result-max" class="stat">
+          <div class="stat__label" x-t="'calc.results.max'"></div>
+          <div id="calc-result-max-value" class="stat__value" x-text="fmt(summary.pensMax)"></div>
+          <div id="calc-result-max-sub" class="stat__sub" x-t="['calc.results.pctOfSbu', { pct: maxPct }]"></div>
+        </div>
+      </div>
+      <div id="calc-eligibility" class="alert" :class="elig.ok ? 'alert--ok' : 'alert--warn'" role="status" x-t="['calc.elig.' + elig.code, elig.params]"></div>
+      <p id="calc-results-disclaimer" class="note" x-t="'disclaimer.short'"></p>
+    </section>
+
+    <section id="calc-desired" class="card" aria-labelledby="calc-desired-title" x-show="deseada > 0">
+      <h2 id="calc-desired-title" x-t="'calc.desired.title'"></h2>
+      <div id="calc-desired-form" class="calculator__form">
+        <div id="calc-field-sueldo" class="field">
+          <label id="calc-label-sueldo" for="calc-input-sueldo"><span x-t="'calc.desired.salary'"></span> <small class="field__unit" x-t="'calc.desired.salaryUnit'"></small></label>
+          <input id="calc-input-sueldo" type="number" x-model.number="sueldoAjustado" @input="sueldoTouched = true" @keydown.up.prevent="stepSalary(100)" @keydown.down.prevent="stepSalary(-100)" min="0" step="0.01">
+          <div id="calc-desired-iess-note" class="field__hint" x-t="['calc.desired.iessNote', { amount: fmt(aporteIESS) }]"></div>
+        </div>
+      </div>
+
+      <div id="calc-desired-nodata" class="alert alert--warn" x-show="sinDatos" x-t="'calc.desired.needData'"></div>
+
+      <template x-if="!sinDatos">
+        <div id="calc-desired-simulation">
+          <div id="calc-desired-result" class="alert" :class="meta.alcanzada ? 'alert--ok' : 'alert--warn'" x-t.html="[meta.alcanzada ? 'calc.desired.reached' : 'calc.desired.notReached', reachedParams]"></div>
+          <template x-if="meta.primeraTopada">
+            <div id="calc-recommendation" class="alert alert--info calculator__recommendation">
+              <span id="calc-recommendation-text" x-t.html="['calc.desired.recommendation', recommendationParams]"></span>
+              <button id="calc-recommendation-max-table-link" type="button" class="btn btn--link" @click="goToMaxTable()" x-t="'calc.desired.seeMaxTable'"></button>
+            </div>
+          </template>
+          <div class="table-wrap table-wrap--scroll">
+            <table id="calc-sim-table" class="table">
+              <thead>
+                <tr>
+                  <th x-t="'calc.desired.colNum'"></th>
+                  <th x-t="'calc.desired.colYears'"></th>
+                  <th x-t="'calc.desired.colSalary'"></th>
+                  <th x-t="'calc.desired.colAverage'"></th>
+                  <th x-t="'calc.desired.colCoef'"></th>
+                  <th x-t="'calc.desired.colPension'"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="row in simulation" :key="row.num">
+                  <tr :id="'calc-sim-row-' + row.num">
+                    <td x-text="row.num"></td>
+                    <td x-text="(row.num / 12).toFixed(1)"></td>
+                    <td x-text="fmt(row.salario)"></td>
+                    <td x-text="fmt(row.prom)"></td>
+                    <td x-text="row.coef.toFixed(3)"></td>
+                    <td>
+                      <span x-text="fmt(row.bruta)"></span>
+                      <div class="field__hint" x-show="row.final !== row.bruta" x-t="['calc.desired.capped', { amount: fmt(row.final) }]"></div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+          <p id="calc-desired-note" class="note" x-t="'calc.desired.note'"></p>
+        </div>
+      </template>
+
+      <div id="calc-desired-below-min" class="alert alert--warn" x-show="!sinDatos && deseada < summary.pensMin" x-t="['calc.desired.belowMin', { min: fmt(summary.pensMin) }]"></div>
+    </section>
+  </div>
+
+  <div id="calc-tabpanel-tables" role="tabpanel" aria-labelledby="calc-tab-tables" x-show="active === 'tables'">
+    <div data-include="design-system/sections/rules-tables.html" data-id-prefix="calc-ref-"></div>
+  </div>
+</div>

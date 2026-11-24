@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Jubilación IESS</title>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<style>
+  :root {
+    --azul: #1a56a8;
+    --azul-oscuro: #12407d;
+    --rojo: #c0392b;
+    --texto: #1f2937;
+    --gris: #6b7280;
+    --borde: #e5e7eb;
+    --fondo: #f9fafb;
+    --verde: #15803d;
+    --verde-fondo: #f0fdf4;
+    --rojo-fondo: #fef2f2;
+    --azul-fondo: #eff6ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { border-bottom: 3px solid var(--azul); padding-bottom: 16px; margin-bottom: 24px; }
+  header h1 { font-size: 1.6rem; color: var(--azul-oscuro); }
+  header p { color: var(--gris); font-size: 0.95rem; margin-top: 4px; }
+  .card {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .card h2 { font-size: 1.05rem; color: var(--azul-oscuro); margin-bottom: 14px; }
+  .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: var(--texto); }
+  .field small { color: var(--gris); font-weight: 400; }
+  .field input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  .field input:focus { outline: 2px solid var(--azul); border-color: transparent; }
+  .result-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .result {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 14px;
+    background: var(--fondo);
+  }
+  .result .label { font-size: 0.8rem; color: var(--gris); font-weight: 600; }
+  .result .value { font-size: 1.25rem; font-weight: 700; color: var(--azul-oscuro); margin-top: 2px; }
+  .result .sub { font-size: 0.8rem; color: var(--gris); margin-top: 2px; }
+  .result.highlight { background: var(--azul-fondo); border-color: #bfdbfe; }
+  .alert { border-radius: 8px; padding: 12px 14px; font-size: 0.9rem; margin-top: 14px; }
+  .alert.warn { background: var(--rojo-fondo); border: 1px solid #fecaca; color: #7f1d1d; }
+  .alert.ok { background: var(--verde-fondo); border: 1px solid #bbf7d0; color: var(--verde); }
+  .section-title { margin: 18px 0 10px; font-size: 1rem; color: var(--azul-oscuro); }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--borde); }
+  th { background: var(--fondo); color: var(--azul-oscuro); font-weight: 600; white-space: nowrap; }
+  tbody tr:nth-child(even) { background: var(--fondo); }
+  .coef-scroll { max-height: 320px; overflow-y: auto; border: 1px solid var(--borde); border-radius: 8px; }
+  .coef-scroll table { font-size: 0.85rem; }
+  .coef-scroll thead th { position: sticky; top: 0; z-index: 1; }
+  .note { font-size: 0.85rem; color: var(--gris); margin-top: 8px; }
+  .input-sub { font-size: 0.8rem; color: var(--gris); margin-top: 4px; }
+  .recomendacion {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--azul-fondo);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    color: var(--azul-oscuro);
+    font-weight: 600;
+  }
+  .table-scroll { max-height: 420px; overflow-y: auto; border: 1px solid var(--borde); border-radius: 8px; margin-top: 14px; }
+  .table-scroll thead th { position: sticky; top: 0; z-index: 1; }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--borde);
+    padding-bottom: 0;
+  }
+  .tab {
+    padding: 10px 20px;
+    border: 1px solid var(--borde);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    background: var(--fondo);
+    color: var(--gris);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: -1px;
+  }
+  .tab.active { background: #fff; color: var(--azul-oscuro); border-top: 3px solid var(--azul); }
+  @media (max-width: 600px) {
+    .result-box { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container" x-data="calculadora()">
+
+  <header>
+    <h1>Calculadora de Jubilación IESS</h1>
+    <p>Calcula tu pensión actual, cuánto tiempo más necesitas aportar y a cuánto subir tu sueldo base para lograr la pensión que deseas.</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab" :class="tab === 'calc' && 'active'" @click="tab = 'calc'">Calculadora</button>
+    <button class="tab" :class="tab === 'tablas' && 'active'" @click="tab = 'tablas'">Tablas de referencia</button>
+  </nav>
+
+  <div x-show="tab === 'calc'">
+  <section class="card">
+    <h2>Datos de entrada</h2>
+    <div class="grid-form">
+      <div class="field">
+        <label for="aportes">Cantidad de aportaciones <small>(meses)</small></label>
+        <input type="number" id="aportes" x-model.number="aportes" min="0" step="1" placeholder="Ej: 300">
+      </div>
+      <div class="field">
+        <label for="promedio">Promedio 5 mejores años <small>($)</small></label>
+        <input type="number" id="promedio" x-model.number="promedio" min="0" step="0.01" placeholder="Ej: 1200">
+      </div>
+      <div class="field">
+        <label for="edad">Edad actual <small>(años)</small></label>
+        <input type="number" id="edad" x-model.number="edad" min="0" step="1" placeholder="Ej: 55">
+      </div>
+      <div class="field">
+        <label for="deseada">Pensión mensual deseada <small>($, opcional)</small></label>
+        <input type="number" id="deseada" x-model.number="deseada" min="0" step="0.01" placeholder="Ej: 900">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Resultados</h2>
+    <div class="result-box">
+      <div class="result highlight">
+        <div class="label">Pensión mensual</div>
+        <div class="value" x-text="fmt(pension)">$0</div>
+        <div class="sub">Promedio × coeficiente, dentro de topes</div>
+      </div>
+      <div class="result">
+        <div class="label">Décimo cuarto al año</div>
+        <div class="value" x-text="fmt(SBU)">$0</div>
+        <div class="sub">Un salario básico unificado extra</div>
+      </div>
+      <div class="result">
+        <div class="label">Décimo tercero</div>
+        <div class="value" x-text="fmt(pension)">$0</div>
+        <div class="sub">Un mes de pensión extra al año</div>
+      </div>
+      <div class="result">
+        <div class="label">Total anual</div>
+        <div class="value" x-text="fmt(totalAnual)">$0</div>
+        <div class="sub">12 meses + décimo tercero + décimo cuarto</div>
+      </div>
+      <div class="result">
+        <div class="label">Coeficiente aplicado</div>
+        <div class="value" x-text="coef.toFixed(3)">0</div>
+        <div class="sub" x-text="coefSub"></div>
+      </div>
+      <div class="result">
+        <div class="label">Tope mínimo</div>
+        <div class="value" x-text="fmt(pensMin)">$0</div>
+        <div class="sub" x-text="(pctMin(anios) * 100).toFixed(0) + '% del SBU'"></div>
+      </div>
+      <div class="result">
+        <div class="label">Tope máximo</div>
+        <div class="value" x-text="fmt(pensMax)">$0</div>
+        <div class="sub" x-text="(pctMax(anios) * 100).toFixed(0) + '% del SBU'"></div>
+      </div>
+    </div>
+    <div class="alert" :class="elig.ok ? 'alert ok' : 'alert warn'" x-text="elig.text"></div>
+  </section>
+
+  <section class="card" x-show="tab === 'calc' && deseada > 0">
+    <h2>Pensión deseada</h2>
+    <div class="grid-form">
+      <div class="field">
+        <label for="sueldoAjustado">Aporte o sueldo ajustado <small>($)</small></label>
+        <input type="number" id="sueldoAjustado" x-model.number="sueldoAjustado" @input="sueldoTouched = true" @keydown.up.prevent="sueldoAjustado = Math.round(sueldoAjustado / 100) * 100 + 100" @keydown.down.prevent="sueldoAjustado = Math.max(0, Math.round(sueldoAjustado / 100) * 100 - 100)" min="0" step="0.01">
+        <div class="input-sub">Aporte al IESS (20.6%): <span x-text="fmt(aporteIESS)"></span></div>
+      </div>
+    </div>
+
+    <template x-if="deseada > 0">
+      <div>
+        <div class="alert warn" x-show="simulacionSinDatos">Ingresa un promedio de los 5 mejores años mayor que 0 para simular.</div>
+        <template x-if="!simulacionSinDatos">
+          <div>
+            <div class="alert" :class="simulacionMeta.alcanzada ? 'alert ok' : 'alert warn'">
+              <template x-if="simulacionMeta.alcanzada">
+                <span>Con aportes mensuales de <b x-text="fmt(simulacionMeta.salario)"></b> (aporte al IESS: <b x-text="fmt(simulacionMeta.iess)"></b>), alcanzarás tu pensión deseada de <b x-text="fmt(deseada)"></b> en <b x-text="simulacionMeta.meses"></b> meses más, llegando a <b x-text="simulacionMeta.totalAportes"></b> aportes (<b x-text="simulacionMeta.anos"></b> años).</span>
+              </template>
+              <template x-if="!simulacionMeta.alcanzada">
+                <span>No alcanzas la pensión deseada en 50 años de aportes con un salario ajustado de <b x-text="fmt(simulacionMeta.salario)"></b>. Aumenta el sueldo ajustado.</span>
+              </template>
+            </div>
+            <div class="recomendacion" x-show="simulacionMeta.primeraTopada">
+              <b>Recomendación:</b> el objetivo es lograr el mejor valor lo más pronto posible. Es mejor aportar solo hasta <b x-text="simulacionMeta.primeraTopada.num"></b> aportes (<b x-text="simulacionMeta.topeSugeridoAnos"></b> años o <b x-text="simulacionMeta.aportesExtra"></b> aportes más). En ese punto tu pensión llega al tope máximo de <b x-text="fmt(simulacionMeta.topeSugerido)"></b> y los aportes siguientes ya no la aumentan hasta el siguiente rango. El tope máximo sube por rango: <span x-text="simulacionMeta.proximosRangos.join(' · ')"></span> <a href="#" @click.prevent="irATablaPensionMaxima()">Ver tabla de pensiones máximas</a>.
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Núm. aportación</th><th>Equiv. años</th><th>Salario ajustado</th><th>Prom 5 mejores años</th><th>Coeficiente</th><th>Pensión a recibir</th></tr></thead>
+                <tbody>
+                  <template x-for="row in simulacion" :key="row.num">
+                    <tr>
+                      <td x-text="row.num"></td>
+                      <td x-text="(row.num / 12).toFixed(1)"></td>
+                      <td x-text="fmt(row.salario)"></td>
+                      <td x-text="fmt(row.prom)"></td>
+                      <td x-text="row.coef.toFixed(3)"></td>
+                      <td>
+                        <span x-text="fmt(row.bruta)"></span>
+                        <div class="input-sub" x-show="row.final !== row.bruta" x-text="'tope: ' + fmt(row.final)"></div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+            <p class="note">Promedio ajustado mensual: (promedio × 59 + salario) ÷ 60. Coeficiente según el año completo de aportes (tabla de referencia). Pensión a recibir = promedio ajustado × coeficiente (con topes mín/máx del SBU cuando aplican).</p>
+          </div>
+        </template>
+        <div class="alert warn" x-show="!simulacionSinDatos && deseada < pensMin">La pensión deseada es menor que la mínima (<span x-text="fmt(pensMin)"></span>). Recibirías al menos <span x-text="fmt(pensMin)"></span>.</div>
+      </div>
+    </template>
+  </section>
+  </div>
+
+  <div x-show="tab === 'tablas'">
+  <section class="card">
+    <h2>Edad de jubilación y aportes necesarios</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>EDAD</th><th>IMPOSICIONES</th></tr></thead>
+        <tbody>
+          <tr><td>Sin límite de edad</td><td>480 o más</td></tr>
+          <tr><td>60 años o más</td><td>360 o más</td></tr>
+          <tr><td>65 años o más</td><td>180 o más</td></tr>
+          <tr><td>70 años o más</td><td>120 o más</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">SBU 2026 = $482. Aplica la opción que se cumpla con tu edad actual.</p>
+  </section>
+
+  <section class="card">
+    <h2>Pensión mínima en función del SBU</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Años de aportaciones</th><th>Porcentaje del salario básico</th></tr></thead>
+        <tbody>
+          <tr><td>Hasta 10</td><td>50%</td></tr>
+          <tr><td>De 11 a 20</td><td>60%</td></tr>
+          <tr><td>De 21 a 30</td><td>70%</td></tr>
+          <tr><td>De 31 a 35</td><td>80%</td></tr>
+          <tr><td>De 36 a 39</td><td>90%</td></tr>
+          <tr><td>40 y más</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="pension-maxima">
+    <h2>Pensión máxima en función del SBU</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rangos de años aportados</th><th>Porcentaje del SBU</th></tr></thead>
+        <tbody>
+          <tr><td>10-14</td><td>250%</td></tr>
+          <tr><td>15-19</td><td>300%</td></tr>
+          <tr><td>20-24</td><td>350%</td></tr>
+          <tr><td>25-29</td><td>400%</td></tr>
+          <tr><td>30-34</td><td>450%</td></tr>
+          <tr><td>35-39</td><td>500%</td></tr>
+          <tr><td>40 y más</td><td>550%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Coeficiente de jubilación</h2>
+    <div class="coef-scroll">
+      <table>
+        <thead><tr><th>Años de aporte</th><th>Coeficiente</th></tr></thead>
+        <tbody>
+          <template x-for="row in coefData" :key="row.anios">
+            <tr>
+              <td x-text="row.anios"></td>
+              <td x-text="row.coef.toFixed(3)"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">El coeficiente cambia por año completo de aportes, según la tabla. Para más de 50 años se mantiene en 1.125.</p>
+  </section>
+  </div>
+
+</div>
+
+<script>
+function calculadora() {
+  return {
+    SBU: 482,
+    tab: 'calc',
+    COEF: {
+      5: 0.438, 6: 0.450, 7: 0.463, 8: 0.475, 9: 0.488, 10: 0.500,
+      11: 0.513, 12: 0.525, 13: 0.538, 14: 0.550, 15: 0.563, 16: 0.575,
+      17: 0.588, 18: 0.600, 19: 0.613, 20: 0.625, 21: 0.638, 22: 0.650,
+      23: 0.663, 24: 0.675, 25: 0.688, 26: 0.700, 27: 0.713, 28: 0.725,
+      29: 0.738, 30: 0.750, 31: 0.763, 32: 0.775, 33: 0.788, 34: 0.800,
+      35: 0.813, 36: 0.833, 37: 0.861, 38: 0.897, 39: 0.943, 40: 1.000,
+      41: 1.013, 42: 1.025, 43: 1.038, 44: 1.050, 45: 1.063, 46: 1.075,
+      47: 1.088, 48: 1.100, 49: 1.113, 50: 1.125
+    },
+    COEF_MAX: 1.125,
+
+    aportes: 180,
+    promedio: 1800,
+    edad: 65,
+    deseada: 0,
+    sueldoAjustado: null,
+    sueldoTouched: false,
+
+    init() {
+      this.sueldoAjustado = this.sueldoDefault;
+      this.$watch('promedio', () => {
+        if (!this.sueldoTouched) this.sueldoAjustado = this.sueldoDefault;
+      });
+    },
+
+    get coefData() {
+      return Object.entries(this.COEF).map(([a, c]) => ({ anios: parseInt(a), coef: c }));
+    },
+    get anios() { return this.aportes / 12; },
+    coefPorMeses(meses) {
+      const anios = Math.floor(meses / 12);
+      if (anios < 5) return 0;
+      if (anios >= 50) return this.COEF_MAX;
+      return this.COEF[anios];
+    },
+    get coef() { return this.coefPorMeses(this.aportes); },
+    get coefSub() {
+      const a = this.anios;
+      return Math.floor(a) + ' años y ' + (this.aportes % 12) + ' meses de aportes';
+    },
+    pctMin(y) {
+      return y <= 10 ? 0.50 : y <= 20 ? 0.60 : y <= 30 ? 0.70 : y <= 35 ? 0.80 : y <= 39 ? 0.90 : 1.00;
+    },
+    pctMax(y) {
+      return y < 10 ? 2.50 : y <= 14 ? 2.50 : y <= 19 ? 3.00 : y <= 24 ? 3.50 : y <= 29 ? 4.00 : y <= 34 ? 4.50 : y <= 39 ? 5.00 : 5.50;
+    },
+    get pensMin() { return this.SBU * this.pctMin(Math.floor(this.anios)); },
+    get pensMax() { return this.SBU * this.pctMax(Math.floor(this.anios)); },
+    get pension() {
+      const cruda = this.promedio * this.coef;
+      return Math.max(this.pensMin, Math.min(cruda, this.pensMax));
+    },
+    get totalAnual() { return this.pension * 13 + this.SBU; },
+    get elig() {
+      const { aportes, edad } = this;
+      if (aportes >= 480) return { ok: true, text: 'Cumples los requisitos: tienes 480 o más aportaciones (sin límite de edad).' };
+      if (edad >= 70 && aportes >= 120) return { ok: true, text: 'Cumples los requisitos para jubilarte a los 70 años (120 o más aportaciones).' };
+      if (edad >= 65 && aportes >= 180) return { ok: true, text: 'Cumples los requisitos para jubilarte a los 65 años (180 o más aportaciones).' };
+      if (edad >= 60 && aportes >= 360) return { ok: true, text: 'Cumples los requisitos para jubilarte a los 60 años (360 o más aportaciones).' };
+      const opciones = [];
+      if (aportes < 480) opciones.push('te faltan ' + (480 - aportes) + ' aportes para llegar a 480 (sin límite de edad)');
+      if (edad >= 70 && aportes < 120) opciones.push('te faltan ' + (120 - aportes) + ' aportes para los requisitos de 70 años (120)');
+      if (edad >= 65 && aportes < 180) opciones.push('te faltan ' + (180 - aportes) + ' aportes para los requisitos de 65 años (180)');
+      if (edad >= 60 && aportes < 360) opciones.push('te faltan ' + (360 - aportes) + ' aportes para los requisitos de 60 años (360)');
+      if (edad < 60) opciones.push('con menos de 60 años necesitas 480 aportes');
+      return { ok: false, text: 'Aún no cumples los requisitos: ' + opciones[0] + '.' };
+    },
+    get sueldoDefault() { return Math.round(this.promedio * 2.5 * 100) / 100; },
+    get sueldoActivo() { return this.sueldoAjustado || this.sueldoDefault; },
+    irATablaPensionMaxima() {
+      this.tab = 'tablas';
+      this.$nextTick(() => document.getElementById('pension-maxima').scrollIntoView({ behavior: 'smooth' }));
+    },
+    get aporteIESS() { return this.sueldoActivo * 0.206; },
+    get simulacionSinDatos() { return this.deseada <= 0 || this.promedio <= 0; },
+    get simulacion() {
+      const rows = [];
+      if (this.simulacionSinDatos) return rows;
+      let aportes = Math.max(0, this.aportes);
+      let prom = this.promedio;
+      const salario = this.sueldoActivo;
+      while (aportes < 600) {
+        aportes++;
+        prom = (prom * 59 + salario) / 60;
+        const coef = this.coefPorMeses(aportes);
+        const bruta = prom * coef;
+        const final = Math.max(this.SBU * this.pctMin(Math.floor(aportes / 12)), Math.min(bruta, this.SBU * this.pctMax(Math.floor(aportes / 12))));
+        rows.push({ num: aportes, salario, prom, coef, bruta, final });
+        if (final >= this.deseada) break;
+      }
+      return rows;
+    },
+    get simulacionMeta() {
+      const rows = this.simulacion;
+      if (!rows.length) return { alcanzada: false, salario: 0, iess: 0, meses: 0, totalAportes: 0, anos: '0', primeraTopada: null, topeSugerido: 0, topeSugeridoAnos: '0', proximosRangos: [] };
+      const last = rows[rows.length - 1];
+      const primeraTopada = rows.find(r => r.final !== r.bruta) || null;
+      const aniosSugerido = primeraTopada ? Math.floor(primeraTopada.num / 12) : Math.floor(last.num / 12);
+      const rangos = [
+        { desde: 10, hasta: 14, pct: 2.5 },
+        { desde: 15, hasta: 19, pct: 3.0 },
+        { desde: 20, hasta: 24, pct: 3.5 },
+        { desde: 25, hasta: 29, pct: 4.0 },
+        { desde: 30, hasta: 34, pct: 4.5 },
+        { desde: 35, hasta: 39, pct: 5.0 },
+        { desde: 40, hasta: null, pct: 5.5 }
+      ];
+      const proximosRangos = rangos
+        .filter(r => r.desde > aniosSugerido)
+        .map(r => (r.hasta ? r.desde + '-' + r.hasta + ' años' : r.desde + ' años y más') + ': ' + this.fmt(this.SBU * r.pct));
+      return {
+        alcanzada: last.final >= this.deseada,
+        meses: rows.length,
+        totalAportes: last.num,
+        anos: (last.num / 12).toFixed(1),
+        salario: last.salario,
+        iess: last.salario * 0.206,
+        primeraTopada,
+        aportesExtra: primeraTopada ? primeraTopada.num - this.aportes : 0,
+        topeSugerido: primeraTopada ? this.SBU * this.pctMax(Math.floor(primeraTopada.num / 12)) : 0,
+        topeSugeridoAnos: primeraTopada ? (primeraTopada.num / 12).toFixed(1) : '0',
+        proximosRangos
+      };
+    },
+    fmt(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
+  };
+}
+</script>
+</body>
+</html>

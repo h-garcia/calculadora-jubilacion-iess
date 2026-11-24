@@ -1,0 +1,16 @@
+<header id="site-header">
+  <nav id="site-nav" class="site-nav" :aria-label="$t('common.nav.label')">
+    <div class="container site-nav__inner">
+      <a id="site-nav-brand" class="site-nav__brand" href="{{root}}./" x-t="'common.siteName'"></a>
+      <ul id="site-nav-links" class="site-nav__links">
+        <li><a id="site-nav-link-home" href="{{root}}./" :aria-current="document.documentElement.dataset.page === 'home' ? 'page' : null" x-t="'common.nav.home'"></a></li>
+        <li><a id="site-nav-link-calculator" href="{{root}}calculadora/" :aria-current="document.documentElement.dataset.page === 'calculator' ? 'page' : null" x-t="'common.nav.calculator'"></a></li>
+        <li><a id="site-nav-link-design-system" href="{{root}}design-system/" :aria-current="document.documentElement.dataset.page === 'design-system' ? 'page' : null" x-t="'common.nav.designSystem'"></a></li>
+      </ul>
+      <div id="lang-toggle" class="lang-toggle" role="group" :aria-label="$t('common.lang.toggleLabel')">
+        <button id="lang-toggle-es" type="button" class="lang-toggle__option" lang="es" :aria-pressed="$store.i18n.lang === 'es'" :title="$t('common.lang.esName')" @click="$store.i18n.setLang('es')" x-t="'common.lang.es'"></button>
+        <button id="lang-toggle-en" type="button" class="lang-toggle__option" lang="en" :aria-pressed="$store.i18n.lang === 'en'" :title="$t('common.lang.enName')" @click="$store.i18n.setLang('en')" x-t="'common.lang.en'"></button>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,73 @@
+<div id="tables" class="rules__grid" x-data="rulesTables()">
+  <section id="eligibility" class="card" aria-labelledby="eligibility-title">
+    <h3 id="eligibility-title" x-t="'tables.eligibility.title'"></h3>
+    <div class="table-wrap">
+      <table id="eligibility-table" class="table">
+        <thead><tr><th x-t="'tables.eligibility.colAge'"></th><th x-t="'tables.eligibility.colContributions'"></th></tr></thead>
+        <tbody>
+          <template x-for="row in eligibility" :key="row.key">
+            <tr :id="idBase + '-eligibility-row-' + row.id">
+              <td x-t="'tables.eligibility.' + row.key"></td>
+              <td x-t="['tables.eligibility.contributionsValue', { n: row.n }]"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <p id="eligibility-sbu-note" class="note" x-t="['landing.rules.sbuNote', { year: sbuYear, sbu: sbu }]"></p>
+  </section>
+
+  <section id="min-pension" class="card" aria-labelledby="min-pension-title">
+    <h3 id="min-pension-title" x-t="'tables.minPension.title'"></h3>
+    <div class="table-wrap">
+      <table id="min-pension-table" class="table">
+        <thead><tr><th x-t="'tables.minPension.colYears'"></th><th x-t="'tables.minPension.colPct'"></th><th x-t="'tables.minPension.colAmount'"></th></tr></thead>
+        <tbody>
+          <template x-for="row in minRows" :key="row.key">
+            <tr :id="idBase + '-min-row-' + row.id">
+              <td x-t="'tables.minPension.' + row.key"></td>
+              <td x-text="row.pct + '%'"></td>
+              <td x-text="row.amount"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="max-pension" class="card" data-role="max-pension" aria-labelledby="max-pension-title">
+    <h3 id="max-pension-title" x-t="'tables.maxPension.title'"></h3>
+    <div class="table-wrap">
+      <table id="max-pension-table" class="table">
+        <thead><tr><th x-t="'tables.maxPension.colYears'"></th><th x-t="'tables.maxPension.colPct'"></th><th x-t="'tables.maxPension.colAmount'"></th></tr></thead>
+        <tbody>
+          <template x-for="row in maxRows" :key="row.key">
+            <tr :id="idBase + '-max-row-' + row.id">
+              <td x-t="'tables.maxPension.' + row.key"></td>
+              <td x-text="row.pct + '%'"></td>
+              <td x-text="row.amount"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="coefficient" class="card" aria-labelledby="coefficient-title">
+    <h3 id="coefficient-title" x-t="'tables.coefficient.title'"></h3>
+    <div class="table-wrap table-wrap--scroll">
+      <table id="coefficient-table" class="table">
+        <thead><tr><th x-t="'tables.coefficient.colYears'"></th><th x-t="'tables.coefficient.colCoef'"></th></tr></thead>
+        <tbody>
+          <template x-for="row in coefRows" :key="row.year">
+            <tr :id="idBase + '-coef-row-' + row.year">
+              <td x-text="row.year"></td>
+              <td x-text="row.coef"></td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <p id="coefficient-note" class="note" x-t="'tables.coefficient.note'"></p>
+  </section>
+</div>
