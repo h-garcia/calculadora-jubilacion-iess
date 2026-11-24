@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-24 — `docs/how-it-was-built`
+
+- docs: explain how the project was built and the two local skills (`docs/`)
+- docs: spec (`internal/specs/2026-11-24-how-it-was-built.md`), roadmap item marked WIP
+- No adversarial review (skipped by user decision; docs-only change)
+
 ## 2026-11-24 — `feat/landing-page`
 
 - feat: landing, calculator and design-system pages with ES/EN i18n
