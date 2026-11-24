@@ -1,0 +1,58 @@
+/*
+  Brand tokens — the single source of color, type, spacing and radii.
+  Direction: "Claro" (option 5 in design-system/exploration/2026-11-24-directions.css),
+  chosen by the user on 2026-11-24. Minimal black and white with an emerald accent.
+  Fonts (Space Grotesk + Inter) are loaded by a Google Fonts <link> in each page's <head>.
+*/
+:root {
+  /* Color */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f5f5;
+  --color-text: #111111;
+  --color-muted: #5f5f5f;
+  --color-border: #e6e6e6;
+  --color-primary: #0b7a55;
+  --color-primary-strong: #075c40;
+  --color-on-primary: #ffffff;
+  --color-accent: #0b7a55;
+  --color-highlight-bg: #f2f8f5;
+  --color-ok: #1f6f43;
+  --color-ok-bg: #eaf6ef;
+  --color-warn: #8a2a1f;
+  --color-warn-bg: #fbecea;
+  --color-missing: #d10000;
+
+  /* Typography */
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-weight-heading: 700;
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: clamp(2rem, 5vw, 3rem);
+  --line-height: 1.55;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+
+  /* Shape */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --shadow-sm: none;
+  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.08);
+
+  /* Layout */
+  --container: 1040px;
+  --gutter: 16px;
+}

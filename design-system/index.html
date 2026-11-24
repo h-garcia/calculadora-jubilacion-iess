@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es" data-root="../" data-page="design-system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de diseño — Calculadora Jubilación IESS</title>
+  <meta name="description" content="Referencia viva del sistema de diseño: marca, elementos, componentes, secciones y exploraciones.">
+  <link rel="stylesheet" href="brand/tokens.css">
+  <link rel="stylesheet" href="elements/elements.css">
+  <link rel="stylesheet" href="components/components.css">
+  <link rel="stylesheet" href="sections/sections.css">
+  <!-- Exploration only (non-production): fonts and styles for the five directions -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Fraunces:wght@600;700&family=Inter:wght@400;600;700;800&family=Nunito:wght@400;700;800&family=Source+Sans+3:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="exploration/2026-11-24-directions.css">
+  <script type="module" src="../assets/js/main.js"></script>
+</head>
+<body x-data x-cloak>
+  <a id="skip-link" class="skip-link" href="#main" x-t="'common.skipToContent'"></a>
+  <div data-include="design-system/sections/site-nav.html"></div>
+  <main id="main">
+    <header id="ds-page-header" class="calculator__page-header">
+      <div class="container">
+        <h1 id="ds-page-title" x-t="'designSystem.title'"></h1>
+        <p id="ds-page-intro" class="lead" x-t="'designSystem.intro'"></p>
+      </div>
+    </header>
+    <div id="ds-tabs" class="container" x-data="tabs('brand')">
+      <div id="ds-tablist" class="tabs" role="tablist" :aria-label="$t('designSystem.tabs.label')">
+        <button id="ds-tab-brand" type="button" role="tab" class="tabs__tab" data-tab="brand" aria-controls="ds-tabpanel-brand" :aria-selected="active === 'brand'" :tabindex="active === 'brand' ? 0 : -1" @click="select('brand')" @keydown="onKey($event)" x-t="'designSystem.tabs.brand'"></button>
+        <button id="ds-tab-elements" type="button" role="tab" class="tabs__tab" data-tab="elements" aria-controls="ds-tabpanel-elements" :aria-selected="active === 'elements'" :tabindex="active === 'elements' ? 0 : -1" @click="select('elements')" @keydown="onKey($event)" x-t="'designSystem.tabs.elements'"></button>
+        <button id="ds-tab-components" type="button" role="tab" class="tabs__tab" data-tab="components" aria-controls="ds-tabpanel-components" :aria-selected="active === 'components'" :tabindex="active === 'components' ? 0 : -1" @click="select('components')" @keydown="onKey($event)" x-t="'designSystem.tabs.components'"></button>
+        <button id="ds-tab-sections" type="button" role="tab" class="tabs__tab" data-tab="sections" aria-controls="ds-tabpanel-sections" :aria-selected="active === 'sections'" :tabindex="active === 'sections' ? 0 : -1" @click="select('sections')" @keydown="onKey($event)" x-t="'designSystem.tabs.sections'"></button>
+        <button id="ds-tab-exploration" type="button" role="tab" class="tabs__tab" data-tab="exploration" aria-controls="ds-tabpanel-exploration" :aria-selected="active === 'exploration'" :tabindex="active === 'exploration' ? 0 : -1" @click="select('exploration')" @keydown="onKey($event)" x-t="'designSystem.tabs.exploration'"></button>
+      </div>
+      <div id="ds-tabpanel-brand" role="tabpanel" aria-labelledby="ds-tab-brand" x-show="active === 'brand'">
+        <h2 id="ds-brand-title" x-t="'designSystem.brand.title'"></h2>
+        <p id="ds-brand-intro" class="lead" x-t="'designSystem.brand.intro'"></p>
+        <h3 id="ds-brand-colors-title" x-t="'designSystem.brand.colors'"></h3>
+        <div id="ds-brand-swatches" class="ds-swatch-grid">
+          <div id="ds-brand-swatch-bg" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-bg)"></div>
+            <div class="ds-swatch__meta">--color-bg</div>
+          </div>
+          <div id="ds-brand-swatch-surface" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-surface)"></div>
+            <div class="ds-swatch__meta">--color-surface</div>
+          </div>
+          <div id="ds-brand-swatch-surface-alt" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-surface-alt)"></div>
+            <div class="ds-swatch__meta">--color-surface-alt</div>
+          </div>
+          <div id="ds-brand-swatch-text" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-text)"></div>
+            <div class="ds-swatch__meta">--color-text</div>
+          </div>
+          <div id="ds-brand-swatch-muted" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-muted)"></div>
+            <div class="ds-swatch__meta">--color-muted</div>
+          </div>
+          <div id="ds-brand-swatch-border" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-border)"></div>
+            <div class="ds-swatch__meta">--color-border</div>
+          </div>
+          <div id="ds-brand-swatch-primary" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-primary)"></div>
+            <div class="ds-swatch__meta">--color-primary</div>
+          </div>
+          <div id="ds-brand-swatch-primary-strong" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-primary-strong)"></div>
+            <div class="ds-swatch__meta">--color-primary-strong</div>
+          </div>
+          <div id="ds-brand-swatch-on-primary" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-on-primary)"></div>
+            <div class="ds-swatch__meta">--color-on-primary</div>
+          </div>
+          <div id="ds-brand-swatch-accent" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-accent)"></div>
+            <div class="ds-swatch__meta">--color-accent</div>
+          </div>
+          <div id="ds-brand-swatch-highlight-bg" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-highlight-bg)"></div>
+            <div class="ds-swatch__meta">--color-highlight-bg</div>
+          </div>
+          <div id="ds-brand-swatch-ok" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-ok)"></div>
+            <div class="ds-swatch__meta">--color-ok</div>
+          </div>
+          <div id="ds-brand-swatch-ok-bg" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-ok-bg)"></div>
+            <div class="ds-swatch__meta">--color-ok-bg</div>
+          </div>
+          <div id="ds-brand-swatch-warn" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-warn)"></div>
+            <div class="ds-swatch__meta">--color-warn</div>
+          </div>
+          <div id="ds-brand-swatch-warn-bg" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-warn-bg)"></div>
+            <div class="ds-swatch__meta">--color-warn-bg</div>
+          </div>
+          <div id="ds-brand-swatch-missing" class="ds-swatch">
+            <div class="ds-swatch__chip" style="background: var(--color-missing)"></div>
+            <div class="ds-swatch__meta">--color-missing</div>
+          </div>
+        </div>
+        <h3 id="ds-brand-typography-title" x-t="'designSystem.brand.typography'"></h3>
+        <div id="ds-brand-type">
+          <div id="ds-brand-type-xs" class="ds-specimen">
+            <div class="ds-specimen__label">--text-xs</div>
+            <div class="heading" style="font-size: var(--text-xs)" x-t="'common.siteName'"></div>
+          </div>
+          <div id="ds-brand-type-sm" class="ds-specimen">
+            <div class="ds-specimen__label">--text-sm</div>
+            <div class="heading" style="font-size: var(--text-sm)" x-t="'common.siteName'"></div>
+          </div>
+          <div id="ds-brand-type-md" class="ds-specimen">
+            <div class="ds-specimen__label">--text-md</div>
+            <div class="heading" style="font-size: var(--text-md)" x-t="'common.siteName'"></div>
+          </div>
+          <div id="ds-brand-type-lg" class="ds-specimen">
+            <div class="ds-specimen__label">--text-lg</div>
+            <div class="heading" style="font-size: var(--text-lg)" x-t="'common.siteName'"></div>
+          </div>
+          <div id="ds-brand-type-xl" class="ds-specimen">
+            <div class="ds-specimen__label">--text-xl</div>
+            <div class="heading" style="font-size: var(--text-xl)" x-t="'common.siteName'"></div>
+          </div>
+          <div id="ds-brand-type-2xl" class="ds-specimen">
+            <div class="ds-specimen__label">--text-2xl</div>
+            <div class="heading" style="font-size: var(--text-2xl)" x-t="'common.siteName'"></div>
+          </div>
+        </div>
+        <h3 id="ds-brand-spacing-title" x-t="'designSystem.brand.spacing'"></h3>
+        <div id="ds-brand-spacing">
+          <div id="ds-brand-spacing-1" class="ds-specimen">
+            <div class="ds-specimen__label">--space-1 · 4px</div>
+            <div style="width: var(--space-1); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-2" class="ds-specimen">
+            <div class="ds-specimen__label">--space-2 · 8px</div>
+            <div style="width: var(--space-2); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-3" class="ds-specimen">
+            <div class="ds-specimen__label">--space-3 · 12px</div>
+            <div style="width: var(--space-3); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-4" class="ds-specimen">
+            <div class="ds-specimen__label">--space-4 · 16px</div>
+            <div style="width: var(--space-4); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-5" class="ds-specimen">
+            <div class="ds-specimen__label">--space-5 · 24px</div>
+            <div style="width: var(--space-5); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-6" class="ds-specimen">
+            <div class="ds-specimen__label">--space-6 · 32px</div>
+            <div style="width: var(--space-6); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-7" class="ds-specimen">
+            <div class="ds-specimen__label">--space-7 · 48px</div>
+            <div style="width: var(--space-7); height: 16px; background: var(--color-primary)"></div>
+          </div>
+          <div id="ds-brand-spacing-8" class="ds-specimen">
+            <div class="ds-specimen__label">--space-8 · 72px</div>
+            <div style="width: var(--space-8); height: 16px; background: var(--color-primary)"></div>
+          </div>
+        </div>
+        <h3 id="ds-brand-radius-title" x-t="'designSystem.brand.radius'"></h3>
+        <div id="ds-brand-radius">
+          <div id="ds-brand-radius-sm" class="ds-specimen">
+            <div class="ds-specimen__label">--radius-sm · 6px</div>
+            <div style="width: 96px; height: 56px; background: var(--color-highlight-bg); border: 2px solid var(--color-primary); border-radius: var(--radius-sm)"></div>
+          </div>
+          <div id="ds-brand-radius-md" class="ds-specimen">
+            <div class="ds-specimen__label">--radius-md · 10px</div>
+            <div style="width: 96px; height: 56px; background: var(--color-highlight-bg); border: 2px solid var(--color-primary); border-radius: var(--radius-md)"></div>
+          </div>
+          <div id="ds-brand-radius-lg" class="ds-specimen">
+            <div class="ds-specimen__label">--radius-lg · 16px</div>
+            <div style="width: 96px; height: 56px; background: var(--color-highlight-bg); border: 2px solid var(--color-primary); border-radius: var(--radius-lg)"></div>
+          </div>
+        </div>
+        <h3 id="ds-brand-wordmark-title" x-t="'designSystem.brand.wordmark'"></h3>
+        <div id="ds-brand-wordmark" class="ds-specimen">
+          <div class="ds-specimen__label">common.siteName</div>
+          <span id="ds-brand-wordmark-text" class="site-nav__brand" x-t="'common.siteName'"></span>
+        </div>
+      </div>
+      <div id="ds-tabpanel-elements" role="tabpanel" aria-labelledby="ds-tab-elements" x-show="active === 'elements'">
+        <h2 id="ds-elements-title" x-t="'designSystem.elements.title'"></h2>
+        <p id="ds-elements-intro" class="lead" x-t="'designSystem.elements.intro'"></p>
+          <div id="ds-elements-btn-primary" class="ds-specimen">
+            <div class="ds-specimen__label">.btn .btn--primary</div>
+            <button id="ds-elements-btn-primary-sample" type="button" class="btn btn--primary" x-t="'landing.hero.cta'"></button>
+          </div>
+          <div id="ds-elements-btn-secondary" class="ds-specimen">
+            <div class="ds-specimen__label">.btn .btn--secondary</div>
+            <button id="ds-elements-btn-secondary-sample" type="button" class="btn btn--secondary" x-t="'landing.hero.secondary'"></button>
+          </div>
+          <div id="ds-elements-btn-link" class="ds-specimen">
+            <div class="ds-specimen__label">.btn .btn--link</div>
+            <button id="ds-elements-btn-link-sample" type="button" class="btn btn--link" x-t="'calc.desired.seeMaxTable'"></button>
+          </div>
+          <div id="ds-elements-field" class="ds-specimen">
+            <div class="ds-specimen__label">.field .field__unit .field__hint</div>
+            <div id="ds-elements-field-sample" class="field">
+              <label for="ds-elements-field-input"><span x-t="'calc.inputs.aportes'"></span> <small class="field__unit" x-t="'calc.inputs.aportesUnit'"></small></label>
+              <input id="ds-elements-field-input" type="number" value="180" min="0" step="1">
+              <div id="ds-elements-field-hint" class="field__hint" x-t="'disclaimer.short'"></div>
+            </div>
+          </div>
+          <div id="ds-elements-badge" class="ds-specimen">
+            <div class="ds-specimen__label">.badge</div>
+            <span id="ds-elements-badge-sample" class="badge" x-t="'designSystem.sample.badge'"></span>
+          </div>
+          <div id="ds-elements-alert-ok" class="ds-specimen">
+            <div class="ds-specimen__label">.alert .alert--ok</div>
+            <div id="ds-elements-alert-ok-sample" class="alert alert--ok" x-t="'calc.elig.ok65'"></div>
+          </div>
+          <div id="ds-elements-alert-warn" class="ds-specimen">
+            <div class="ds-specimen__label">.alert .alert--warn</div>
+            <div id="ds-elements-alert-warn-sample" class="alert alert--warn" x-t="'calc.elig.under60'"></div>
+          </div>
+          <div id="ds-elements-alert-info" class="ds-specimen">
+            <div class="ds-specimen__label">.alert .alert--info</div>
+            <div id="ds-elements-alert-info-sample" class="alert alert--info" x-t="'disclaimer.short'"></div>
+          </div>
+          <div id="ds-elements-eyebrow" class="ds-specimen">
+            <div class="ds-specimen__label">.eyebrow</div>
+            <span id="ds-elements-eyebrow-sample" class="eyebrow" x-t="'landing.hero.eyebrow'"></span>
+          </div>
+          <div id="ds-elements-lead" class="ds-specimen">
+            <div class="ds-specimen__label">.lead</div>
+            <p id="ds-elements-lead-sample" class="lead" x-t="'landing.hero.subtitle'"></p>
+          </div>
+          <div id="ds-elements-note" class="ds-specimen">
+            <div class="ds-specimen__label">.note / .muted</div>
+            <p id="ds-elements-note-sample" class="note" x-t="'disclaimer.short'"></p>
+          </div>
+          <div id="ds-elements-table" class="ds-specimen">
+            <div class="ds-specimen__label">.table-wrap .table</div>
+            <div id="ds-elements-table-wrap" class="table-wrap">
+              <table id="ds-elements-table-sample" class="table">
+                <thead><tr><th x-t="'tables.eligibility.colAge'"></th><th x-t="'tables.eligibility.colContributions'"></th></tr></thead>
+                <tbody>
+                  <tr><td x-t="'tables.eligibility.age65'"></td><td x-t="['tables.eligibility.contributionsValue', { n: 180 }]"></td></tr>
+                  <tr><td x-t="'tables.eligibility.age70'"></td><td x-t="['tables.eligibility.contributionsValue', { n: 120 }]"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="ds-elements-missing" class="ds-specimen">
+            <div class="ds-specimen__label">.i18n-missing</div>
+            <p id="ds-elements-missing-sample" x-t="'designSystem.sample.intentionallyMissing'"></p>
+          </div>
+      </div>
+      <div id="ds-tabpanel-components" role="tabpanel" aria-labelledby="ds-tab-components" x-show="active === 'components'">
+        <h2 id="ds-components-title" x-t="'designSystem.components.title'"></h2>
+        <p id="ds-components-intro" class="lead" x-t="'designSystem.components.intro'"></p>
+          <div id="ds-components-nav" class="ds-specimen">
+            <div class="ds-specimen__label">.site-nav .site-nav__inner .site-nav__brand .site-nav__links</div>
+            <nav id="ds-components-nav-sample" class="site-nav" style="position: static" :aria-label="$t('common.nav.label')">
+              <div class="container site-nav__inner">
+                <a id="ds-components-nav-brand" class="site-nav__brand" href="#ds-components-nav-sample" x-t="'common.siteName'"></a>
+                <ul id="ds-components-nav-links" class="site-nav__links">
+                  <li><a id="ds-components-nav-link-home" href="#ds-components-nav-sample" aria-current="page" x-t="'common.nav.home'"></a></li>
+                  <li><a id="ds-components-nav-link-calculator" href="#ds-components-nav-sample" x-t="'common.nav.calculator'"></a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div id="ds-components-lang-toggle" class="ds-specimen">
+            <div class="ds-specimen__label">.lang-toggle .lang-toggle__option</div>
+            <div id="ds-components-lang-toggle-sample" class="lang-toggle" role="group" :aria-label="$t('common.lang.toggleLabel')">
+              <button id="ds-components-lang-toggle-es" type="button" class="lang-toggle__option" lang="es" :aria-pressed="$store.i18n.lang === 'es'" @click="$store.i18n.setLang('es')" x-t="'common.lang.es'"></button>
+              <button id="ds-components-lang-toggle-en" type="button" class="lang-toggle__option" lang="en" :aria-pressed="$store.i18n.lang === 'en'" @click="$store.i18n.setLang('en')" x-t="'common.lang.en'"></button>
+            </div>
+          </div>
+          <div id="ds-components-card" class="ds-specimen">
+            <div class="ds-specimen__label">.card</div>
+            <div id="ds-components-card-sample" class="card">
+              <h3 id="ds-components-card-title" x-t="'calc.results.title'"></h3>
+              <p id="ds-components-card-body" x-t="'disclaimer.short'"></p>
+            </div>
+          </div>
+          <div id="ds-components-stat" class="ds-specimen">
+            <div class="ds-specimen__label">.stat-grid .stat .stat--highlight</div>
+            <div id="ds-components-stat-grid" class="stat-grid">
+              <div id="ds-components-stat-highlight" class="stat stat--highlight">
+                <div class="stat__label" x-t="'calc.results.pension'"></div>
+                <div class="stat__value">$1,013</div>
+                <div class="stat__sub" x-t="'calc.results.pensionSub'"></div>
+              </div>
+              <div id="ds-components-stat-plain" class="stat">
+                <div class="stat__label" x-t="'calc.results.decimoCuarto'"></div>
+                <div class="stat__value">$482</div>
+                <div class="stat__sub" x-t="'calc.results.decimoCuartoSub'"></div>
+              </div>
+            </div>
+          </div>
+          <div id="ds-components-step-card" class="ds-specimen">
+            <div class="ds-specimen__label">.card .step-card .step-card__num</div>
+            <article id="ds-components-step-card-sample" class="card step-card">
+              <span id="ds-components-step-card-num" class="step-card__num" aria-hidden="true">1</span>
+              <h3 id="ds-components-step-card-title" x-t="'landing.how.step1.title'"></h3>
+              <p id="ds-components-step-card-body" x-t="'landing.how.step1.body'"></p>
+            </article>
+          </div>
+          <div id="ds-components-tabs" class="ds-specimen">
+            <div class="ds-specimen__label">.tabs .tabs__tab</div>
+            <div id="ds-components-tabs-sample" x-data="tabs('a')">
+              <div id="ds-components-tabs-list" class="tabs" role="tablist" :aria-label="$t('calc.tabs.label')">
+                <button id="ds-components-tab-a" type="button" role="tab" class="tabs__tab" data-tab="a" aria-controls="ds-components-tabpanel-a" :aria-selected="active === 'a'" :tabindex="active === 'a' ? 0 : -1" @click="select('a')" @keydown="onKey($event)" x-t="'calc.tabs.calc'"></button>
+                <button id="ds-components-tab-b" type="button" role="tab" class="tabs__tab" data-tab="b" aria-controls="ds-components-tabpanel-b" :aria-selected="active === 'b'" :tabindex="active === 'b' ? 0 : -1" @click="select('b')" @keydown="onKey($event)" x-t="'calc.tabs.tables'"></button>
+              </div>
+              <div id="ds-components-tabpanel-a" role="tabpanel" aria-labelledby="ds-components-tab-a" x-show="active === 'a'"><p id="ds-components-tabpanel-a-text" x-t="'designSystem.sample.sampleText'"></p></div>
+              <div id="ds-components-tabpanel-b" role="tabpanel" aria-labelledby="ds-components-tab-b" x-show="active === 'b'"><p id="ds-components-tabpanel-b-text" x-t="'disclaimer.short'"></p></div>
+            </div>
+          </div>
+          <div id="ds-components-faq-item" class="ds-specimen">
+            <div class="ds-specimen__label">.faq-item</div>
+            <details id="ds-components-faq-item-sample" class="faq-item">
+              <summary id="ds-components-faq-item-question" x-t="'landing.faq.q1.question'"></summary>
+              <p id="ds-components-faq-item-answer" x-t="'landing.faq.q1.answer'"></p>
+            </details>
+          </div>
+          <div id="ds-components-notice" class="ds-specimen">
+            <div class="ds-specimen__label">.notice .notice__title</div>
+            <div id="ds-components-notice-sample" class="notice">
+              <div id="ds-components-notice-title" class="notice__title" x-t="'disclaimer.title'"></div>
+              <p id="ds-components-notice-body" x-t="'disclaimer.body'"></p>
+            </div>
+          </div>
+      </div>
+      <div id="ds-tabpanel-sections" role="tabpanel" aria-labelledby="ds-tab-sections" x-show="active === 'sections'">
+        <h2 id="ds-sections-title" x-t="'designSystem.sections.title'"></h2>
+        <p id="ds-sections-intro" class="lead" x-t="'designSystem.sections.intro'"></p>
+          <div id="ds-sections-site-nav" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/site-nav.html</div>
+            <div data-include="design-system/sections/site-nav.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-hero" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/hero.html</div>
+            <div data-include="design-system/sections/hero.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-how-it-works" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/how-it-works.html</div>
+            <div data-include="design-system/sections/how-it-works.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-rules" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/rules.html</div>
+            <div data-include="design-system/sections/rules.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-faq" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/faq.html</div>
+            <div data-include="design-system/sections/faq.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-disclaimer" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/disclaimer.html</div>
+            <div data-include="design-system/sections/disclaimer.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-site-footer" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/site-footer.html</div>
+            <div data-include="design-system/sections/site-footer.html" data-id-prefix="ds-"></div>
+          </div>
+          <div id="ds-sections-calculator" class="ds-specimen">
+            <div class="ds-specimen__label">design-system/sections/calculator.html</div>
+            <div data-include="design-system/sections/calculator.html" data-id-prefix="ds-"></div>
+          </div>
+      </div>
+      <div id="ds-tabpanel-exploration" role="tabpanel" aria-labelledby="ds-tab-exploration" x-show="active === 'exploration'">
+        <div data-include="design-system/exploration/2026-11-24-directions.html"></div>
+      </div>
+    </div>
+  </main>
+  <div data-include="design-system/sections/site-footer.html"></div>
+</body>
+</html>

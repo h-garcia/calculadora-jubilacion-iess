@@ -1,0 +1,279 @@
+{
+  "common": {
+    "siteName": "Calculadora Jubilación IESS",
+    "skipToContent": "Saltar al contenido",
+    "nav": {
+      "label": "Navegación principal",
+      "home": "Inicio",
+      "calculator": "Calculadora",
+      "designSystem": "Sistema de diseño"
+    },
+    "lang": {
+      "toggleLabel": "Idioma del sitio",
+      "es": "ES",
+      "esName": "Español",
+      "en": "EN",
+      "enName": "Inglés"
+    }
+  },
+  "disclaimer": {
+    "title": "Aviso importante",
+    "body": "Esta calculadora entrega una estimación con fines informativos. No es asesoría oficial del IESS ni reemplaza tu historia laboral. Los valores (SBU, coeficientes y topes) pueden cambiar cada año.",
+    "short": "Resultado estimado, no oficial. Confirma tu pensión con el IESS.",
+    "link": "Ir al sitio oficial del IESS"
+  },
+  "footer": {
+    "tagline": "Hecho para ayudar a los trabajadores ecuatorianos a planificar su jubilación.",
+    "source": "Datos de referencia: SBU {year} = {sbu}.",
+    "repo": "Código abierto en GitHub"
+  },
+  "landing": {
+    "meta": {
+      "title": "Calculadora Jubilación IESS — Calcula tu pensión",
+      "description": "Entiende las reglas de jubilación del IESS y calcula tu pensión estimada en minutos."
+    },
+    "hero": {
+      "eyebrow": "Jubilación IESS · Ecuador",
+      "title": "Descubre cuánto recibirás al jubilarte",
+      "subtitle": "Calcula tu pensión del IESS en minutos y descubre cuántos aportes más y qué sueldo necesitas para llegar a la pensión que quieres.",
+      "cta": "Calcula mi pensión",
+      "secondary": "Ver las reglas"
+    },
+    "how": {
+      "title": "Cómo funciona",
+      "step1": {
+        "title": "Ingresa tus datos",
+        "body": "Tu número de aportaciones, el promedio de tus 5 mejores años de sueldo y tu edad."
+      },
+      "step2": {
+        "title": "Mira tu pensión",
+        "body": "Te mostramos tu pensión mensual estimada, los pagos extra del año y si ya cumples los requisitos."
+      },
+      "step3": {
+        "title": "Define tu meta",
+        "body": "Escribe la pensión que deseas y te decimos cuántos aportes más y qué sueldo necesitas para alcanzarla."
+      }
+    },
+    "rules": {
+      "title": "Las reglas, explicadas",
+      "intro": "El IESS calcula tu pensión con tres datos: cuántos años aportaste, el promedio de tus 5 mejores años de sueldo y un coeficiente. Además, la pensión nunca baja de un mínimo ni pasa de un máximo, ambos ligados al Salario Básico Unificado (SBU).",
+      "formula": "Pensión mensual = promedio de los 5 mejores años × coeficiente (dentro de los topes mínimo y máximo).",
+      "sbuNote": "SBU {year} = {sbu}. Aplica la opción que se cumpla con tu edad actual."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "q1": {
+        "question": "¿Qué es el SBU y por qué importa?",
+        "answer": "El Salario Básico Unificado (SBU) es el sueldo mínimo que fija el Gobierno cada año. El IESS lo usa para definir la pensión mínima y máxima, y para el décimo cuarto que recibes como jubilado."
+      },
+      "q2": {
+        "question": "¿Cómo se calcula mi pensión?",
+        "answer": "Se multiplica el promedio de tus 5 mejores años de sueldo por un coeficiente que depende de tus años de aportes. Si el resultado es menor que el mínimo o mayor que el máximo de tu rango, se ajusta a ese tope."
+      },
+      "q3": {
+        "question": "¿Qué es el promedio de los 5 mejores años?",
+        "answer": "Es el promedio mensual de los 60 meses en los que más ganaste. Puedes revisarlo en tu historia laboral en el sitio del IESS. Si no lo sabes, usa una estimación."
+      },
+      "q4": {
+        "question": "¿Cuántas aportaciones necesito para jubilarme?",
+        "answer": "Depende de tu edad: 480 aportes sin importar la edad, 360 si tienes 60 años o más, 180 si tienes 65 o más, y 120 si tienes 70 o más."
+      },
+      "q5": {
+        "question": "¿Recibo pagos extra al año?",
+        "answer": "Sí. Recibes el décimo tercero (una pensión mensual adicional) y el décimo cuarto (un SBU adicional). Por eso el total anual es mayor que 12 pensiones."
+      },
+      "q6": {
+        "question": "¿Este cálculo es oficial?",
+        "answer": "No. Es una estimación informativa basada en las tablas publicadas. Para conocer tu pensión exacta, consulta directamente con el IESS."
+      }
+    }
+  },
+  "tables": {
+    "eligibility": {
+      "title": "Edad de jubilación y aportes necesarios",
+      "colAge": "Edad",
+      "colContributions": "Aportaciones",
+      "contributionsValue": "{n} o más",
+      "noAgeLimit": "Sin límite de edad",
+      "age60": "60 años o más",
+      "age65": "65 años o más",
+      "age70": "70 años o más"
+    },
+    "minPension": {
+      "title": "Pensión mínima según años de aportes",
+      "colYears": "Años de aportaciones",
+      "colPct": "Porcentaje del SBU",
+      "colAmount": "Valor mensual",
+      "upTo10": "Hasta 10",
+      "y11to20": "De 11 a 20",
+      "y21to30": "De 21 a 30",
+      "y31to35": "De 31 a 35",
+      "y36to39": "De 36 a 39",
+      "y40plus": "40 y más"
+    },
+    "maxPension": {
+      "title": "Pensión máxima según años de aportes",
+      "colYears": "Rango de años aportados",
+      "colPct": "Porcentaje del SBU",
+      "colAmount": "Valor mensual",
+      "y10to14": "10 a 14",
+      "y15to19": "15 a 19",
+      "y20to24": "20 a 24",
+      "y25to29": "25 a 29",
+      "y30to34": "30 a 34",
+      "y35to39": "35 a 39",
+      "y40plus": "40 y más"
+    },
+    "coefficient": {
+      "title": "Coeficiente de jubilación",
+      "colYears": "Años de aporte",
+      "colCoef": "Coeficiente",
+      "note": "El coeficiente cambia por año completo de aportes. Para más de 50 años se mantiene en 1.125."
+    }
+  },
+  "calc": {
+    "meta": {
+      "title": "Calculadora — Calculadora Jubilación IESS",
+      "description": "Calcula tu pensión del IESS, si cumples los requisitos y cuánto necesitas aportar para llegar a tu meta."
+    },
+    "title": "Calcula tu pensión",
+    "subtitle": "Calcula tu pensión actual, cuánto tiempo más necesitas aportar y a cuánto subir tu sueldo para lograr la pensión que deseas.",
+    "tabs": {
+      "label": "Secciones de la calculadora",
+      "calc": "Calculadora",
+      "tables": "Tablas de referencia"
+    },
+    "inputs": {
+      "title": "Tus datos",
+      "aportes": "Cantidad de aportaciones",
+      "aportesUnit": "(meses)",
+      "aportesPlaceholder": "Ej: 300",
+      "promedio": "Promedio 5 mejores años",
+      "promedioUnit": "($)",
+      "promedioPlaceholder": "Ej: 1200",
+      "edad": "Edad actual",
+      "edadUnit": "(años)",
+      "edadPlaceholder": "Ej: 55",
+      "deseada": "Pensión mensual deseada",
+      "deseadaUnit": "($, opcional)",
+      "deseadaPlaceholder": "Ej: 900"
+    },
+    "results": {
+      "title": "Resultados",
+      "pension": "Pensión mensual",
+      "pensionSub": "Promedio × coeficiente, dentro de topes",
+      "decimoCuarto": "Décimo cuarto al año",
+      "decimoCuartoSub": "Un salario básico unificado extra",
+      "decimoTercero": "Décimo tercero",
+      "decimoTerceroSub": "Un mes de pensión extra al año",
+      "totalAnual": "Total anual",
+      "totalAnualSub": "12 meses + décimo tercero + décimo cuarto",
+      "coef": "Coeficiente aplicado",
+      "coefSub": "{years} años y {months} meses de aportes",
+      "min": "Tope mínimo",
+      "max": "Tope máximo",
+      "pctOfSbu": "{pct}% del SBU"
+    },
+    "elig": {
+      "ok480": "Cumples los requisitos: tienes 480 o más aportaciones (sin límite de edad).",
+      "ok70": "Cumples los requisitos para jubilarte a los 70 años (120 o más aportaciones).",
+      "ok65": "Cumples los requisitos para jubilarte a los 65 años (180 o más aportaciones).",
+      "ok60": "Cumples los requisitos para jubilarte a los 60 años (360 o más aportaciones).",
+      "missing480": "Aún no cumples los requisitos: te faltan {missing} aportes para llegar a 480 (sin límite de edad).",
+      "missing70": "Aún no cumples los requisitos: te faltan {missing} aportes para los requisitos de 70 años (120).",
+      "missing65": "Aún no cumples los requisitos: te faltan {missing} aportes para los requisitos de 65 años (180).",
+      "missing60": "Aún no cumples los requisitos: te faltan {missing} aportes para los requisitos de 60 años (360).",
+      "under60": "Aún no cumples los requisitos: con menos de 60 años necesitas 480 aportes."
+    },
+    "desired": {
+      "title": "Pensión deseada",
+      "salary": "Aporte o sueldo ajustado",
+      "salaryUnit": "($)",
+      "iessNote": "Aporte al IESS (20.6%): {amount}",
+      "needData": "Ingresa un promedio de los 5 mejores años mayor que 0 para simular.",
+      "reached": "Con aportes mensuales de <b>{salary}</b> (aporte al IESS: <b>{iess}</b>), alcanzarás tu pensión deseada de <b>{desired}</b> en <b>{months}</b> meses más, llegando a <b>{total}</b> aportes (<b>{years}</b> años).",
+      "notReached": "No alcanzas la pensión deseada en 50 años de aportes con un salario ajustado de <b>{salary}</b>. Aumenta el sueldo ajustado.",
+      "recommendation": "<b>Recomendación:</b> el objetivo es lograr el mejor valor lo más pronto posible. Es mejor aportar solo hasta <b>{total}</b> aportes (<b>{years}</b> años o <b>{extra}</b> aportes más). En ese punto tu pensión llega al tope máximo de <b>{cap}</b> y los aportes siguientes ya no la aumentan hasta el siguiente rango. El tope máximo sube por rango: {ranges}",
+      "rangeBounded": "{from}-{to} años: {amount}",
+      "rangeOpen": "{from} años y más: {amount}",
+      "seeMaxTable": "Ver tabla de pensiones máximas",
+      "colNum": "Núm. aportación",
+      "colYears": "Equiv. años",
+      "colSalary": "Salario ajustado",
+      "colAverage": "Prom 5 mejores años",
+      "colCoef": "Coeficiente",
+      "colPension": "Pensión a recibir",
+      "capped": "tope: {amount}",
+      "note": "Promedio ajustado mensual: (promedio × 59 + salario) ÷ 60. Coeficiente según el año completo de aportes (tabla de referencia). Pensión a recibir = promedio ajustado × coeficiente (con topes mín/máx del SBU cuando aplican).",
+      "belowMin": "La pensión deseada es menor que la mínima ({min}). Recibirías al menos {min}."
+    }
+  },
+  "designSystem": {
+    "meta": {
+      "title": "Sistema de diseño — Calculadora Jubilación IESS",
+      "description": "Referencia viva del sistema de diseño: marca, elementos, componentes, secciones y exploraciones."
+    },
+    "title": "Sistema de diseño",
+    "intro": "Referencia viva de todo lo que usan las páginas del sitio. Cada ejemplo se genera con el mismo código que las páginas reales.",
+    "tabs": {
+      "label": "Áreas del sistema de diseño",
+      "brand": "Marca",
+      "elements": "Elementos",
+      "components": "Componentes",
+      "sections": "Secciones",
+      "exploration": "Exploración"
+    },
+    "brand": {
+      "title": "Marca",
+      "intro": "Tokens de color, tipografía, espacio y forma, más el logotipo en texto.",
+      "colors": "Color",
+      "typography": "Tipografía",
+      "spacing": "Espaciado",
+      "radius": "Radios",
+      "wordmark": "Logotipo"
+    },
+    "elements": {
+      "title": "Elementos",
+      "intro": "Piezas básicas: botones, campos, insignias, alertas, textos y tablas."
+    },
+    "components": {
+      "title": "Componentes",
+      "intro": "Composiciones reutilizables hechas con los elementos."
+    },
+    "sections": {
+      "title": "Secciones",
+      "intro": "Bloques de página completos, tal como se usan en las páginas del sitio."
+    },
+    "sample": {
+      "badge": "Nuevo",
+      "sampleText": "Texto de ejemplo"
+    },
+    "exploration": {
+      "title": "Exploración",
+      "intro": "Cinco direcciones visuales para el nuevo look. Cada una usa los mismos componentes reales; solo cambian los tokens de marca. Elige una para producción. Estas exploraciones se conservan siempre.",
+      "option": "Opción",
+      "directions": {
+        "andes": {
+          "name": "Andes",
+          "description": "Verde azulado sereno y arena cálida, títulos con serifa editorial. Transmite calma y confianza."
+        },
+        "pacifico": {
+          "name": "Pacífico",
+          "description": "Azul océano profundo con coral, formas suaves y redondeadas. Cercano y optimista."
+        },
+        "civico": {
+          "name": "Cívico",
+          "description": "Azul marino institucional con amarillo de la bandera de Ecuador. Nítido, oficial y confiable."
+        },
+        "cacao": {
+          "name": "Cacao",
+          "description": "Crema, verde bosque y dorado cacao. Cálido, editorial y con identidad ecuatoriana."
+        },
+        "claro": {
+          "name": "Claro",
+          "description": "Minimalista en blanco y negro con acento esmeralda y mucho espacio. Moderno y directo."
+        }
+      }
+    }
+  }
+}

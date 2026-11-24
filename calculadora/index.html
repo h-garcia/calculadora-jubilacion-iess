@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" data-root="../" data-page="calculator">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora — Calculadora Jubilación IESS</title>
+  <meta name="description" content="Calcula tu pensión del IESS, si cumples los requisitos y cuánto necesitas aportar para llegar a tu meta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../design-system/brand/tokens.css">
+  <link rel="stylesheet" href="../design-system/elements/elements.css">
+  <link rel="stylesheet" href="../design-system/components/components.css">
+  <link rel="stylesheet" href="../design-system/sections/sections.css">
+  <script type="module" src="../assets/js/main.js"></script>
+</head>
+<body x-data x-cloak>
+  <a id="skip-link" class="skip-link" href="#main" x-t="'common.skipToContent'"></a>
+  <div data-include="design-system/sections/site-nav.html"></div>
+  <main id="main">
+    <header id="calc-page-header" class="calculator__page-header">
+      <div class="container">
+        <h1 id="calc-page-title" x-t="'calc.title'"></h1>
+        <p id="calc-page-subtitle" class="lead" x-t="'calc.subtitle'"></p>
+      </div>
+    </header>
+    <div data-include="design-system/sections/calculator.html"></div>
+  </main>
+  <div data-include="design-system/sections/disclaimer.html"></div>
+  <div data-include="design-system/sections/site-footer.html"></div>
+</body>
+</html>

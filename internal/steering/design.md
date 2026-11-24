@@ -10,23 +10,25 @@ The design system is organized into five areas, shown as five tabs (in this orde
 
 | Area / tab | Application path | Notes |
 |---|---|---|
-| Brand | `<path in the app>` | Tokens (`tokens.json` or equivalent: color, type, spacing, radii), wordmark/logo, monogram/favicon. |
-| Elements | `<path in the app>` | Buttons, inputs, typography, badges, and other atoms. |
-| Components | `<path in the app>` | Reusable composites such as cards, navigation, forms, and dialogs. |
-| Sections | `<path in the app>` | Reusable page-level blocks such as hero, pricing, and footer. |
-| Exploration | `<path in the app>` | Dated, non-production explorations. Production pages never import from here. |
+| Brand | `design-system/brand/` (`tokens.css`, logo, favicon) | Tokens (`tokens.json` or equivalent: color, type, spacing, radii), wordmark/logo, monogram/favicon. |
+| Elements | `design-system/elements/elements.css` | Buttons, inputs, typography, badges, and other atoms. |
+| Components | `design-system/components/components.css` + Alpine components in `assets/js/` | Reusable composites such as cards, navigation, forms, and dialogs. |
+| Sections | `design-system/sections/*.html` partials + `sections.css` | Reusable page-level blocks such as hero, pricing, and footer. |
+| Exploration | `design-system/exploration/` (dated files, kept permanently) | Dated, non-production explorations. Production pages never import from here. |
 
-**Living reference page:** `<URL>` — access: `<public / staff-only>`. Rendered from the same source files as production pages.
+**Living reference page:** `design-system/index.html` → https://h-garcia.github.io/calculadora-jubilacion-iess/design-system/ — access: public, linked from the main nav. Rendered from the same source files as production pages.
 
 ## Aesthetic
 
-<Overall feel, words a user would use to describe it, and useful references.>
+**Claro** (exploration option 5): minimal black and white with an emerald accent (`#0b7a55`), Space Grotesk headings + Inter body, small radii (2–6px), no shadows, lots of whitespace. Words: modern, direct, clear.
 
 ## Principles
 
-- <Principle and its practical implication.>
-- <Principle and its practical implication.>
+- Clarity for non-financial users: large numbers, plain language, one primary action per screen.
+- Bilingual by construction: no visible text in HTML; every string comes from `i18n/*.json`.
+- Mobile first: works at 360px with no horizontal scroll.
 
 ## Decisions and open questions
 
-<Freeform: accepted trade-offs, references, rejected approaches, and unresolved design decisions.>
+- 2026-11-24: Exploration directions are never deleted, even after one is chosen (user decision).
+- 2026-11-24: User chose direction 5, "Claro", for production; its tokens live in `design-system/brand/tokens.css`. The other four stay on the Exploration tab.
